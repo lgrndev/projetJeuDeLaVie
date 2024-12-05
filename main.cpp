@@ -21,6 +21,8 @@ int main() {
         }
     } while (nCols <= 0 || cin.fail());
 
+
+
     do {
         cout << "Entrez le nombre de lignes : ";
         cin >> nRows;
@@ -104,15 +106,15 @@ int main() {
 
         // Interaction utilisateur
         do {
-        cout << "Continuer ? (o/n) : ";
-        cin >> choix;
+            cout << "Continuer ? (o/n) : ";
+            cin >> choix;
 
-        if (choix == 'n') {
-            continuer = false;
-        } else {
-            cout << "Entrée invalide, veuillez répondre par 'o' ou 'n'.\n";
-        }
-    } while (choix != 'o' && choix != 'n');
+            if (choix == 'n') {
+                continuer = false;
+            } else if(choix != 'n' && choix != 'o') {
+                cout << "Entrée invalide, veuillez répondre par 'o' ou 'n'.\n";
+            }
+        } while (choix != 'o' && choix != 'n');
 
     }
     return 0;
