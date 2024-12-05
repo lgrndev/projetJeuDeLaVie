@@ -8,10 +8,21 @@ using namespace std;
 int main() {
     // Étape 1 : Initialisation
     int nCols, nRows;
-    cout << "Entrez le nombre de colonnes : ";
-    cin >> nCols;
-    cout << "Entrez le nombre de lignes : ";
-    cin >> nRows;
+    do {
+        cout << "Entrez le nombre de colonnes : ";
+        cin >> nCols;
+        if (nCols <= 0) {
+            cout << "Le nombre de colonnes doit être un entier strictement positif !" << endl;
+        }
+    } while (nCols <= 0);
+
+    do {
+        cout << "Entrez le nombre de lignes : ";
+        cin >> nRows;
+        if (nRows <= 0) {
+            cout << "Le nombre de lignes doit être un entier strictement positif !" << endl;
+        }
+    } while (nRows <= 0);
 
     Grille grille(nCols, nRows);
 
@@ -38,7 +49,10 @@ int main() {
                 cout << "Coordonnées invalides !" << endl;
             }
         }
-    }
+    } else {
+        cout << "Entrée invalide, arrêt du programme";
+        return 0;
+    };
 
     cout << "Grille initiale :" << endl;
     grille.displayGrille();
@@ -76,7 +90,6 @@ int main() {
 
         // Affichage console (A enlever)
         cout << "Génération : " << grille.getNIteration() << endl;
-        grille.displayGrille();
 
         // Interaction utilisateur
         cout << "Continuer ? (o/n) : ";
@@ -85,8 +98,6 @@ int main() {
             continuer = false;
         }
 
-        // Pause pour observer
-        sf::sleep(sf::milliseconds(200));
     }
     return 0;
 }
