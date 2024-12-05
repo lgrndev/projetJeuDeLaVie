@@ -11,18 +11,29 @@ int main() {
     do {
         cout << "Entrez le nombre de colonnes : ";
         cin >> nCols;
-        if (nCols <= 0) {
+
+        if (cin.fail()) { 
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Ce n'est pas une entrée valide !" << endl;
+        } else if (nCols <= 0) {
             cout << "Le nombre de colonnes doit être un entier strictement positif !" << endl;
         }
-    } while (nCols <= 0);
+    } while (nCols <= 0 || cin.fail());
 
     do {
         cout << "Entrez le nombre de lignes : ";
         cin >> nRows;
-        if (nRows <= 0) {
+
+        if (cin.fail()) { 
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Ce n'est pas une entrée valide !" << endl;
+        } else if (nRows <= 0) {
             cout << "Le nombre de lignes doit être un entier strictement positif !" << endl;
         }
-    } while (nRows <= 0);
+    } while (nRows <= 0 || cin.fail());
+
 
     Grille grille(nCols, nRows);
 
@@ -92,11 +103,16 @@ int main() {
         cout << "Génération : " << grille.getNIteration() << endl;
 
         // Interaction utilisateur
+        do {
         cout << "Continuer ? (o/n) : ";
         cin >> choix;
+
         if (choix == 'n') {
             continuer = false;
+        } else {
+            cout << "Entrée invalide, veuillez répondre par 'o' ou 'n'.\n";
         }
+    } while (choix != 'o' && choix != 'n');
 
     }
     return 0;
